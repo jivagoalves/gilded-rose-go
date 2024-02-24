@@ -1,6 +1,7 @@
 package stock
 
 import (
+	"gilded-rose/assert"
 	"gilded-rose/quality"
 	"testing"
 )
@@ -18,18 +19,18 @@ func TestStock(t *testing.T) {
 		stock := Stock{
 			{
 				name:    "Apple",
-				quality: quality.Q(1),
+				quality: quality.Zero.Inc(1),
 			},
 			{
 				name:    "Orange",
-				quality: quality.Q(2),
+				quality: quality.Zero.Inc(2),
 			},
 		}
 
 		Age(stock)
 
-		assertEqual(t, quality.Zero, stock[0].quality)
-		assertEqual(t, quality.Q(1), stock[1].quality)
+		assert.Equal(t, quality.Zero.Value(), stock[0].quality.Value())
+		assert.Equal(t, quality.Zero.Inc(1).Value(), stock[1].quality.Value())
 	})
 }
 
@@ -37,13 +38,13 @@ func TestItem(t *testing.T) {
 	t.Run("aging an item should decrease the quality", func(t *testing.T) {
 		item := Item{
 			name:    "Apple",
-			quality: quality.Q(2),
+			quality: quality.Zero.Inc(2),
 		}
 
 		item.Age()
 		item.Age()
 
-		assertEqual(t, quality.Zero, item.quality)
+		assert.Equal(t, quality.Zero.Value(), item.quality.Value())
 	})
 
 	t.Run("the quality of any item should never age below zero", func(t *testing.T) {
@@ -55,7 +56,7 @@ func TestItem(t *testing.T) {
 		item.Age()
 		item.Age()
 
-		assertEqual(t, quality.Zero, item.quality)
+		assert.Equal(t, quality.Zero.Value(), item.quality.Value())
 	})
 }
 
@@ -63,12 +64,5 @@ func assertEmpty(t *testing.T, stock Stock) {
 	t.Helper()
 	if len(stock) != 0 {
 		t.Errorf("expected %v to be empty", stock)
-	}
-}
-
-func assertEqual[V comparable](t *testing.T, expected, actual V) {
-	t.Helper()
-	if expected != actual {
-		t.Errorf("expected %v, actual %v", expected, actual)
 	}
 }

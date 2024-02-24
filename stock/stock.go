@@ -13,7 +13,7 @@ func (i *Item) Age() {
 	if i.quality == quality.Zero {
 		return
 	}
-	i.quality--
+	i.quality = i.quality.Dec()
 }
 
 func Age(stock Stock) {

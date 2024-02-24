@@ -1,23 +1,21 @@
 package quality
 
-type quality struct {
-	value int
-}
+type quality int
 
 func (q quality) Value() int {
-	return q.value
+	return int(q)
 }
 
 func (q quality) Inc(i int) quality {
-	if newVal := q.value + i; newVal >= 0 {
-		return quality{newVal}
+	if newVal := q.Value() + i; newVal >= 0 {
+		return quality(newVal)
 	}
 	return Zero
 }
 
 func (q quality) Dec() quality {
-	if newVal := q.value - 1; newVal >= 0 {
-		return quality{newVal}
+	if newVal := q.Value() - 1; newVal >= 0 {
+		return quality(newVal)
 	}
 	return Zero
 }
@@ -28,7 +26,11 @@ type Q interface {
 	Dec() quality
 }
 
-var Zero = quality{0}
+const (
+	Zero = quality(iota)
+	One
+	Two
+)
 
 type ErrNegativeQuality struct{}
 
@@ -40,5 +42,5 @@ func New(value int) (Q, error) {
 	if value < 0 {
 		return nil, ErrNegativeQuality{}
 	}
-	return quality{value}, nil
+	return quality(value), nil
 }

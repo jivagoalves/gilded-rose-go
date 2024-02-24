@@ -19,18 +19,18 @@ func TestStock(t *testing.T) {
 		stock := Stock{
 			{
 				name:    "Apple",
-				quality: quality.Zero.Inc(1),
+				quality: quality.One,
 			},
 			{
 				name:    "Orange",
-				quality: quality.Zero.Inc(2),
+				quality: quality.Two,
 			},
 		}
 
 		Age(stock)
 
 		assert.Equal(t, quality.Zero.Value(), stock[0].quality.Value())
-		assert.Equal(t, quality.Zero.Inc(1).Value(), stock[1].quality.Value())
+		assert.Equal(t, quality.One.Value(), stock[1].quality.Value())
 	})
 }
 
@@ -38,7 +38,7 @@ func TestItem(t *testing.T) {
 	t.Run("aging an item should decrease the quality", func(t *testing.T) {
 		item := Item{
 			name:    "Apple",
-			quality: quality.Zero.Inc(2),
+			quality: quality.Two,
 		}
 
 		item.Age()

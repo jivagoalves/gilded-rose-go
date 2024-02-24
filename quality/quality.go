@@ -2,6 +2,24 @@ package quality
 
 type quality int
 
+const (
+	Zero = quality(iota)
+	One
+	Two
+)
+
+type ErrNegativeQuality struct{}
+
+func (e ErrNegativeQuality) Error() string {
+	return "Quality can't be less than zero."
+}
+
+type Q interface {
+	Value() int
+	Inc(i int) quality
+	Dec() quality
+}
+
 func (q quality) Value() int {
 	return int(q)
 }
@@ -18,24 +36,6 @@ func (q quality) Dec() quality {
 		return quality(newVal)
 	}
 	return Zero
-}
-
-type Q interface {
-	Value() int
-	Inc(i int) quality
-	Dec() quality
-}
-
-const (
-	Zero = quality(iota)
-	One
-	Two
-)
-
-type ErrNegativeQuality struct{}
-
-func (e ErrNegativeQuality) Error() string {
-	return "Quality can't be less than zero."
 }
 
 func New(value int) (Q, error) {

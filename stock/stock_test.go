@@ -1,6 +1,7 @@
 package stock
 
 import (
+	"gilded-rose/name"
 	"gilded-rose/quality"
 	"testing"
 )
@@ -17,45 +18,19 @@ func TestStock(t *testing.T) {
 	t.Run("aging the stock should decrease the quality of all items", func(t *testing.T) {
 		stock := Stock{
 			{
-				name:    "Apple",
-				quality: quality.One,
+				Name:    val(name.New("Apple")),
+				Quality: quality.One,
 			},
 			{
-				name:    "Orange",
-				quality: quality.Two,
+				Name:    val(name.New("Orange")),
+				Quality: quality.Two,
 			},
 		}
 
 		Age(stock)
 
-		quality.AssertEqual(t, quality.Zero, stock[0].quality)
-		quality.AssertEqual(t, quality.One, stock[1].quality)
-	})
-}
-
-func TestItem(t *testing.T) {
-	t.Run("aging an item should decrease the quality", func(t *testing.T) {
-		item := Item{
-			name:    "Apple",
-			quality: quality.Two,
-		}
-
-		item.Age()
-		item.Age()
-
-		quality.AssertEqual(t, quality.Zero, item.quality)
-	})
-
-	t.Run("the quality of any item should never age below zero", func(t *testing.T) {
-		item := Item{
-			name:    "Apple",
-			quality: quality.Zero,
-		}
-
-		item.Age()
-		item.Age()
-
-		quality.AssertEqual(t, quality.Zero, item.quality)
+		quality.AssertEqual(t, quality.Zero, stock[0].Quality)
+		quality.AssertEqual(t, quality.One, stock[1].Quality)
 	})
 }
 
@@ -64,4 +39,8 @@ func assertEmpty(t *testing.T, stock Stock) {
 	if len(stock) != 0 {
 		t.Errorf("expected %v to be empty", stock)
 	}
+}
+
+func val[R any, E error](value R, _ E) R {
+	return value
 }

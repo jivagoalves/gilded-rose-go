@@ -1,7 +1,7 @@
 package quality
 
 import (
-	"errors"
+	"gilded-rose/assert"
 	"testing"
 )
 
@@ -10,7 +10,7 @@ func TestQuality(t *testing.T) {
 		q, err := New(-1)
 
 		assertNil(t, q)
-		assertError(t, ErrNegativeQuality{}, err)
+		assert.Error(t, ErrNegativeQuality{}, err)
 	})
 
 	t.Run("quality should never be less than zero after decreasing", func(t *testing.T) {
@@ -24,13 +24,6 @@ func TestQuality(t *testing.T) {
 
 		AssertEqual(t, Zero, q.Inc(-1))
 	})
-}
-
-func assertError(t *testing.T, expected error, actual error) {
-	t.Helper()
-	if !errors.Is(expected, actual) {
-		t.Errorf("expected %v, actual %v", expected, actual)
-	}
 }
 
 func assertNil(t *testing.T, q Q) {

@@ -1,17 +1,10 @@
 package stock
 
-import "gilded-rose/quality"
+import (
+	"gilded-rose/item"
+)
 
-type Item struct {
-	name    string
-	quality quality.Q
-}
-
-type Stock []Item
-
-func (i *Item) Age() {
-	i.quality = i.quality.Dec()
-}
+type Stock []item.Item
 
 func Age(stock Stock) {
 	for i := range stock {

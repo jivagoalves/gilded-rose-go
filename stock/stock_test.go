@@ -1,7 +1,6 @@
 package stock
 
 import (
-	"gilded-rose/assert"
 	"gilded-rose/quality"
 	"testing"
 )
@@ -29,8 +28,8 @@ func TestStock(t *testing.T) {
 
 		Age(stock)
 
-		assert.Equal(t, quality.Zero.Value(), stock[0].quality.Value())
-		assert.Equal(t, quality.One.Value(), stock[1].quality.Value())
+		quality.AssertEqual(t, quality.Zero, stock[0].quality)
+		quality.AssertEqual(t, quality.One, stock[1].quality)
 	})
 }
 
@@ -44,7 +43,7 @@ func TestItem(t *testing.T) {
 		item.Age()
 		item.Age()
 
-		assert.Equal(t, quality.Zero.Value(), item.quality.Value())
+		quality.AssertEqual(t, quality.Zero, item.quality)
 	})
 
 	t.Run("the quality of any item should never age below zero", func(t *testing.T) {
@@ -56,7 +55,7 @@ func TestItem(t *testing.T) {
 		item.Age()
 		item.Age()
 
-		assert.Equal(t, quality.Zero.Value(), item.quality.Value())
+		quality.AssertEqual(t, quality.Zero, item.quality)
 	})
 }
 

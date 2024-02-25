@@ -42,7 +42,7 @@ TODO
 You can now:
 
 * Add a new item to the stock:
-```
+```shell
 curl --location 'localhost:8080/api/items' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -54,17 +54,17 @@ curl --location 'localhost:8080/api/items' \
 ```
 
 * List all items in the stock:
-```
+```shell
 curl --location 'localhost:8080/api/items'
 ```
 
 * List all items in the stock as of date:
-```
+```shell
 curl --location 'localhost:8080/api/items/as-of/2023-03-01'
 ```
 
 * Remove items from the stock:
-```
+```shell
 curl --location --request DELETE 'localhost:8080/api/items/1'
 ```
 

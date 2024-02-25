@@ -10,9 +10,6 @@ type Item struct {
 type Stock []Item
 
 func (i *Item) Age() {
-	if i.quality == quality.Zero {
-		return
-	}
 	i.quality = i.quality.Dec()
 }
 

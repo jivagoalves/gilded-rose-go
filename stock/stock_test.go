@@ -10,7 +10,7 @@ func TestStock(t *testing.T) {
 	t.Run("empty stock should be empty after aging", func(t *testing.T) {
 		var stock Stock
 
-		Age(stock)
+		stock.Age()
 
 		assertEmpty(t, stock)
 	})
@@ -27,7 +27,7 @@ func TestStock(t *testing.T) {
 			},
 		}
 
-		Age(stock)
+		stock.Age()
 
 		quality.AssertEqual(t, quality.Zero, stock[0].Quality)
 		quality.AssertEqual(t, quality.One, stock[1].Quality)

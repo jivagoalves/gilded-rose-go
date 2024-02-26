@@ -6,8 +6,8 @@ import (
 
 type Stock []item.Item
 
-func Age(stock Stock) {
-	for i := range stock {
-		stock[i].Age()
+func (s Stock) Age() {
+	for i := range s {
+		s[i].Age()
 	}
 }

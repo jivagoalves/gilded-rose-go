@@ -41,6 +41,6 @@ func assertEmpty(t *testing.T, stock Stock) {
 	}
 }
 
-func val[R any, E error](value R, _ E) R {
-	return value
+func val[V any](v V, _ error) V {
+	return v
 }

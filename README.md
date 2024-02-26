@@ -1,5 +1,7 @@
 # Gilded Rose in Go
 
+[![Go](https://github.com/jivagoalves/gilded-rose-go/actions/workflows/go.yml/badge.svg)](https://github.com/jivagoalves/gilded-rose-go/actions/workflows/go.yml)
+
 This is an attempt of implementing the [Gilded Rose](https://kata-log.rocks/gilded-rose-kata) kata in [Go](https://go.dev) using principles from [Type-Driven Design](https://fsharpforfunandprofit.com/series/designing-with-types).
 
 ## The Gilded Rose kata

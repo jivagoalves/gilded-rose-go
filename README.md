@@ -28,13 +28,13 @@ Just for clarification, an item can never have its Quality increase above 50, ho
 Please ensure you have Go installed.
 
 Build the project by running:
-```
-TODO
+```shell
+go build -v ./...
 ```
 
 Run the web app with:
-```
-TODO
+```shell
+go test -v ./...
 ```
 
 ## Stock API (WIP)
